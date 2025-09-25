@@ -1,0 +1,240 @@
+
+{% extends "base.html" %}
+{% block title %}Inicio{% endblock %}
+{% block content %}
+  <!-- Hero -->
+  <section class="max-w-6xl mx-auto px-4 pt-14 md:pt-20 pb-12 grid md:grid-cols-2 gap-10 items-center">
+    <div class="space-y-5">
+      <div class="space-y-1">
+        <h1 class="text-4xl text-brand md:text-5xl font-extrabold tracking-tight">Salteñas <br/> <span class="text-brand">Bolivianas</span></h1>
+        <p class="text-4xl md:text-5xl font-extrabold tracking-tight">Tradicionales</p>
+      </div>
+      <p class="text-ink/70 max-w-md">Crujientes por fuera, jugosas por dentro. Preparadas cada mañana con ingredientes frescos y recetas de casa.</p>
+      <div class="flex gap-3">
+        <a href="https://wa.me/59177902758?text=¡Hola!%20Quiero%20hacer%20un%20pedido%20de%20salteñas%20🍴"
+          target="_blank"
+          class="inline-flex items-center rounded-xl bg-brand text-white text-sm px-5 py-2.5 shadow-soft hover:bg-brand-dark transition">
+          Pedir Ahora
+        </a>
+      </div>
+    </div>
+    <div class="flex justify-center">
+      <img class="w-80 h-80 object-cover rounded-full shadow-soft" src="{{ url_for('static', filename='img/salteña.png') }}" alt="Bandeja de salteñas" onerror="this.src='https://picsum.photos/600';">
+    </div>
+  </section>
+
+  <!-- Salteñas & Jugos -->
+<section class="relative overflow-hidden">
+  <div class="absolute inset-0 -z-10 bg-gradient-to-b from-white to-brand-light/30"></div>
+
+  <div class="relative max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
+
+<img
+  src="{{ url_for('static', filename='img/castor-lateral.png') }}"
+  alt=""
+  aria-hidden="true"
+  class="hidden lg:block pointer-events-none select-none
+         absolute top-32 right-[-40px] 
+         rotate-[-90deg]  <!-- desplaza hacia afuera -->
+         w-64                             <!-- ajusta tamaño -->
+         drop-shadow-lg"
+/>
+
+  </div>
+
+  <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
+    <img class="hidden md:block w-full h-[520px] object-cover object-[100%] rounded-2xl"
+     src="{{ url_for('static', filename='img/salteñas-lateral.png') }}"
+     alt="Close up salteñas"
+     onerror="this.src='https://picsum.photos/1200/800';">
+
+
+    <div class="py-10">
+      <h2 class="text-2xl font-extrabold mb-3">Nuestras Salteñas</h2>
+      <p class="text-sm text-ink/70">Contamos con salteñas de:</p>
+
+      <div class="grid grid-cols-[1fr_1px_1fr] gap-4 mt-4 text-lg pr-32">
+        <ul class="space-y-2">
+          <li>🥩 <strong class="pl-6">Carne</strong></li>
+          <li>🍗 <strong class="pl-6">Pollo</strong></li>
+          <li>🥘 <strong class="pl-6">Fricasé</strong></li>
+          <li>🥩🍗 <strong>Mixta</strong></li>
+          <li>🧀 <strong class="pl-6">Queso</strong></li>
+        </ul>
+
+        <!-- divisor -->
+        <div class="bg-black/10"></div>
+
+        <ul class="space-y-2">
+          <li><strong>Dulce</strong></li>
+          <li><strong>Picante</strong> 🌶️</li>
+          <li><strong>Súper Picante</strong> 🌶️🌶️</li>
+        </ul>
+      </div>
+
+     <a href="{{ url_for('menu') }}" class="mt-4 inline-flex items-center rounded-xl bg-brand text-white text-sm px-5 py-2.5 shadow-soft hover:bg-brand-dark transition">Ver Menú</a>
+  </div>
+  </div>
+
+  <section class="max-w-6xl mx-auto px-4 py-12 grid md:grid-cols-2 gap-8 items-center">
+  <div>
+    <h2 class="text-3xl font-extrabold text-brand mb-3">Nuestros Jugos</h2>
+    <p class="text-lg text-ink/70 mb-4">Contamos con sabores:</p>
+
+    <!-- Lista Jugos + Separador + Leche/Agua con precio -->
+    <div class="grid grid-cols-[1fr_1px_1fr] gap-8 items-start">
+      <!-- Columna izquierda (jugos) -->
+      <ul class="space-y-2 text-[18px] text-black font-semibold">
+        <li class="flex items-center gap-2"><span>🍋</span> <span>Limón</span></li>
+        <li class="flex items-center gap-2"><span>🍓</span> <span>Frutilla</span></li>
+        <li class="flex items-center gap-2"><span>🍌</span> <span>Plátano</span></li>
+        <li class="flex items-center gap-2"><span>🍉</span> <span>Sandía</span></li>
+        <li class="flex items-center gap-2"><span>🍍</span> <span>Piña</span></li>
+      </ul>
+
+      <!-- Separador vertical -->
+      <div class="self-stretch w-px bg-black/20"></div>
+
+      <!-- Columna derecha (leche/agua con precio al extremo derecho) -->
+      <ul class="self-center space-y-2">
+        <li class="flex items-center justify-between gap-4">
+          <div class="flex items-center gap-3 text-[18px] font-semibold">
+            <span>🥛</span> <span>Leche</span>
+          </div>
+          </li>
+
+        <li class="flex items-center justify-between gap-4">
+          <div class="flex items-center gap-3 text-[18px] font-semibold">
+            <span>💧</span> <span>Agua</span>
+          </div>
+          </li>
+      </ul>
+    </div>
+
+
+
+    <a href="{{ url_for('menu') }}" class="mt-4 inline-flex items-center rounded-xl bg-brand text-white text-sm px-5 py-2.5 shadow-soft hover:bg-brand-dark transition">Ver Menú</a>
+  </div>
+
+  <div class="relative">
+    <img class="w-full h-[520px]  object-cover rounded-[28px] shadow-soft"
+         src="{{ url_for('static', filename='img/jugos.png') }}"
+         alt="Jugos naturales" onerror="this.src='https://picsum.photos/1200/700'">
+  </div>
+</section>
+</section>
+
+<!-- Ofertas -->
+<section id="ofertas" class="max-w-6xl mx-auto px-4 pt-16">
+  <h2 class="text-3xl font-extrabold text-center mb-8">Ofertas Para Ti</h2>
+  <div class="grid md:grid-cols-2 gap-6">
+    
+    <article class="bg-white rounded-2xl border border-black/10 overflow-hidden shadow-soft">
+      <img class="w-full aspect-square object-cover"
+           src="{{ url_for('static', filename='img/combo1.png') }}"
+           alt="Combo Bicentenario"
+           onerror="this.src='https://picsum.photos/600/600';">
+    </article>
+
+    <article class="bg-white rounded-2xl border border-black/10 overflow-hidden shadow-soft">
+      <img class="w-full aspect-square object-cover"
+           src="{{ url_for('static', filename='img/combo2.png') }}"
+           alt="Combo para compartir"
+           onerror="this.src='https://picsum.photos/600/600';">
+    </article>
+
+  </div>
+</section>
+
+
+  <!-- Contacto -->
+  <section class="max-w-6xl mx-auto px-4 pt-16">
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-neutral-900 text-neutral-50 pl-32 rounded-2xl p-8 relative overflow-hidden">
+        <h3 class="text-xl font-semibold">Información de Contacto</h3>
+        <p class="text-sm text-neutral-300 mt-2  max-w-sm">¡Déjanos tu mensaje y nuestro equipo se encargará de responderte en menos de 72 horas!</p>
+        <div class="absolute -bottom-10 -right-6 w-40 h-40 bg-brand rounded-full opacity-80"></div>
+      </div>
+
+      <form method="post" action="{{ url_for('contacto') }}" class="bg-transparent">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for cat, msg in messages %}
+            <div data-flash class="mb-3 text-sm px-3 py-2 rounded border {{ 'bg-green-50 text-green-700 border-green-200' if cat=='success' else 'bg-red-50 text-red-700 border-red-200' }}">{{ msg }}</div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+
+      <!-- Fila 1 -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div>
+          <label class="block text-[11px] text-ink/60">Nombre</label>
+          <input name="nombre"
+                 class="block w-full border-0 border-b border-black/20 focus:border-brand focus:ring-0 text-sm py-1.5"
+                 placeholder="" required>
+        </div>
+        <div>
+          <label class="block text-[11px] text-ink/60">Apellido</label>
+          <input name="apellido"
+                 class="block w-full border-0 border-b border-black/20 focus:border-brand focus:ring-0 text-sm py-1.5"
+                 placeholder="Doe" required>
+        </div>
+      </div>
+
+      <!-- Fila 2 -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-8">
+        <div>
+          <label class="block text-[11px] text-ink/60">Email</label>
+          <input type="email" name="email"
+                 class="block w-full border-0 border-b border-black/20 focus:border-brand focus:ring-0 text-sm py-1.5"
+                 placeholder="" required>
+        </div>
+        <div>
+          <label class="block text-[11px] text-ink/60">Número Teléfono</label>
+          <input type="tel" name="telefono"
+                 class="block w-full border-0 border-b border-black/20 focus:border-brand focus:ring-0 text-sm py-1.5"
+                 placeholder="70698639">
+        </div>
+      </div>
+
+      <!-- Tema -->
+      <div class="mt-8">
+        <p class="text-[11px] text-ink/60 mb-2">Selecciona Tema</p>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 text-[13px]">
+          <label class="inline-flex items-center gap-2">
+            <input class="accent-brand" type="radio" name="tema" value="Quiero unirme a su equipo" checked>
+            <span>Quiero unirme a su equipo</span>
+          </label>
+          <label class="inline-flex items-center gap-2">
+            <input class="accent-brand" type="radio" name="tema" value="Quiero abrir una franquicia">
+            <span>Quiero abrir una franquicia</span>
+          </label>
+          <label class="inline-flex items-center gap-2">
+            <input class="accent-brand" type="radio" name="tema" value="Sugerencia General">
+            <span>Sugerencia General</span>
+          </label>
+          <label class="inline-flex items-center gap-2">
+            <input class="accent-brand" type="radio" name="tema" value="Otro">
+            <span>Otro</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Mensaje -->
+      <div class="mt-8">
+        <label class="block text-[11px] text-ink/60">Mensaje</label>
+        <textarea name="mensaje" rows="3"
+                  class="block w-full border-0 border-b border-black/20 focus:border-brand focus:ring-0 text-sm py-1.5"
+                  placeholder="Escribe tu mensaje..."></textarea>
+      </div>
+
+      <!-- Botón alineado a la derecha -->
+      <div class="mt-8 flex justify-end">
+        <button class="inline-flex items-center rounded-xl bg-brand text-white text-sm px-5 py-2.5 shadow-soft hover:bg-brand-dark transition">
+          Enviar Mensaje
+        </button>
+      </div>
+    </form>
+
+  </section>
+{% endblock %}

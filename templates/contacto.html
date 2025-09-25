@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% block title %}Contáctanos{% endblock %}
+
+{% block content %}
+<section class="max-w-6xl mx-auto px-4 pt-14 md:pt-20">
+  <!-- Título centrado -->
+  <h1 class="text-4xl md:text-5xl font-extrabold text-brand text-center mb-12">Contáctanos</h1>
+
+  <div class="grid md:grid-cols-2 gap-10 items-start">
+    <!-- Panel de información -->
+    <aside class="relative bg-neutral-900 text-neutral-50 rounded-[22px] p-8 overflow-hidden">
+      <h3 class="text-xl font-semibold">Información de Contacto</h3>
+      <p class="text-sm text-neutral-300 mt-2 max-w-sm">
+        ¡Déjanos tu mensaje y nuestro equipo se encargará de responderte en menos de 72 horas!
+      </p>
+
+      <ul class="mt-6 space-y-3 text-sm">
+        <li class="flex items-center gap-3">
+          <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/10">📞</span>
+          <span>68525225</span>
+        </li>
+        <li class="flex items-center gap-3">
+          <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/10">✉️</span>
+          <a href="mailto:contacto@loscastoresbo.com" class="underline decoration-white/30 hover:text-white">
+            contacto@loscastoresbo.com
+          </a>
+        </li>
+      </ul>
+
+      <!-- Decor círculo naranja/gris -->
+      <div class="absolute -bottom-7 left-1/2 -translate-x-1/2 md:left-auto md:right-10 md:translate-x-0">
+        <div class="relative w-36 h-36">
+          <div class="absolute inset-0 rounded-full bg-brand"></div>
+          <div class="absolute -bottom-6 -right-6 w-32 h-32 rounded-full bg-white/10"></div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Formulario con líneas (underline) -->
+    <form method="post" action="{{ url_for('contacto') }}" class="bg-transparent">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for cat, msg in messages %}
+            <div data-flash class="mb-3 text-sm px-3 py-2 rounded border {{ 'bg-green-50 text-green-700 border-green-200' if cat=='success' else 'bg-red-50 text-red-700 border-red-200' }}">{{ msg }}</div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+
+      <!-- Fila 1 -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div>
+          <label class="block text-[11px] text-ink/60">Nombre</label>
+          <input name="nombre"
+                 class="block w-full border-0 border-b border-black/20 focus:border-brand focus:ring-0 text-sm py-1.5"
+                 placeholder="" required>
+        </div>
+        <div>
+          <label class="block text-[11px] text-ink/60">Apellido</label>
+          <input name="apellido"
+                 class="block w-full border-0 border-b border-black/20 focus:border-brand focus:ring-0 text-sm py-1.5"
+                 placeholder="Doe" required>
+        </div>
+      </div>
+
+      <!-- Fila 2 -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-8">
+        <div>
+          <label class="block text-[11px] text-ink/60">Email</label>
+          <input type="email" name="email"
+                 class="block w-full border-0 border-b border-black/20 focus:border-brand focus:ring-0 text-sm py-1.5"
+                 placeholder="" required>
+        </div>
+        <div>
+          <label class="block text-[11px] text-ink/60">Número Teléfono</label>
+          <input type="tel" name="telefono"
+                 class="block w-full border-0 border-b border-black/20 focus:border-brand focus:ring-0 text-sm py-1.5"
+                 placeholder="70698639">
+        </div>
+      </div>
+
+      <!-- Tema -->
+      <div class="mt-8">
+        <p class="text-[11px] text-ink/60 mb-2">Selecciona Tema</p>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 text-[13px]">
+          <label class="inline-flex items-center gap-2">
+            <input class="accent-brand" type="radio" name="tema" value="Quiero unirme a su equipo" checked>
+            <span>Quiero unirme a su equipo</span>
+          </label>
+          <label class="inline-flex items-center gap-2">
+            <input class="accent-brand" type="radio" name="tema" value="Quiero abrir una franquicia">
+            <span>Quiero abrir una franquicia</span>
+          </label>
+          <label class="inline-flex items-center gap-2">
+            <input class="accent-brand" type="radio" name="tema" value="Sugerencia General">
+            <span>Sugerencia General</span>
+          </label>
+          <label class="inline-flex items-center gap-2">
+            <input class="accent-brand" type="radio" name="tema" value="Otro">
+            <span>Otro</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Mensaje -->
+      <div class="mt-8">
+        <label class="block text-[11px] text-ink/60">Mensaje</label>
+        <textarea name="mensaje" rows="3"
+                  class="block w-full border-0 border-b border-black/20 focus:border-brand focus:ring-0 text-sm py-1.5"
+                  placeholder="Escribe tu mensaje..."></textarea>
+      </div>
+
+      <!-- Botón alineado a la derecha -->
+      <div class="mt-8 flex justify-end">
+        <button class="inline-flex items-center rounded-xl bg-brand text-white text-sm px-5 py-2.5 shadow-soft hover:bg-brand-dark transition">
+          Enviar Mensaje
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+{% endblock %}
