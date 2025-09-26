@@ -2,60 +2,109 @@
 {% block title %}Sucursales{% endblock %}
 
 {% block content %}
+
+<!-- Estilos de animación -->
+<style>
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.show { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  }
+</style>
+
 <!-- Header Sucursales -->
-<section class="max-w-6xl mx-auto px-4 pt-14 md:pt-20 grid md:grid-cols-2 gap-10 items-start">
+<section class="max-w-7xl mx-auto px-6 md:px-12 pt-14 md:pt-10 grid md:grid-cols-2 gap-10 items-center">
   <!-- Texto -->
-  <div class="space-y-6">
+  <div class="space-y-6 reveal">
     <h1 class="text-4xl md:text-5xl font-extrabold leading-tight text-brand">Nuestras<br> Sucursales</h1>
 
     <!-- La Paz -->
-    <div class="space-y-3">
+    <div class="space-y-3 text-xl">
       <h3 class="text-brand font-semibold">La Paz</h3>
       <p><strong>Miraflores:</strong> Calle Estados Unidos, esq. Pasoskanki #1580</p>
       <p><strong>San Miguel:</strong> Calle Gabriel René Moreno #1391 esq. Enrique Peñaranda</p>
-      <p><strong>Obrajes:</strong> av. 14 de sep. entre 14 y 13 Edif. Isabella</p>
-      <p><strong>Sopocachi:</strong> Av. 20 de octubre #2247 entre Rozendo Gutiérrez y Guachalla</p>
+      <p><strong>Obrajes:</strong> Av. 14 de Sep. entre 14 y 13 — Edif. Isabella</p>
+      <p><strong>Sopocachi:</strong> Av. 20 de Octubre #2247 entre Rosendo Gutiérrez y Guachalla</p>
     </div>
 
     <!-- Oruro -->
-    <div class="space-y-3">
+    <div class="space-y-3 text-xl">
       <h3 class="text-orange-500 font-semibold">Oruro</h3>
       <p><strong>Centro:</strong> Calle Potosí entre Junín y Adolfo Mier</p>
     </div>
 
     <a href="https://wa.me/59168525225?text=¡Hola!%20Quiero%20hacer%20un%20pedido%20de%20salteñas%20🍴"
-          target="_blank"
-           class="inline-flex items-center rounded-xl bg-brand text-white text-sm px-5 py-2.5 shadow-soft hover:bg-brand-dark transition">Pedir Ahora</a>
+       target="_blank"
+       class="inline-flex items-center rounded-xl bg-brand text-white text-sm px-5 py-2.5 shadow-soft hover:bg-brand-dark transition">
+      Pedir Ahora
+    </a>
   </div>
 
   <!-- Imagen -->
-  <div class="relative">
-    <img class="w-full h-[420px] object-cover rounded-[28px] shadow-soft"
+  <div class="relative reveal">
+    <img class="w-full h-[620px] object-cover rounded-[28px] shadow-soft"
          src="{{ url_for('static', filename='img/sucursales.png') }}"
          alt="Fachada de sucursal" onerror="this.src='https://picsum.photos/1200/800'">
   </div>
 </section>
 
 <!-- Barra de horarios -->
-<section class="mt-12">
-  <div class="bg-neutral-800 text-neutral-100">
-    <div class="max-w-6xl mx-auto px-4">
-      <div class="flex items-center text-sm divide-x divide-white/20">
-        <div class="py-3 pr-4 font-semibold">Te esperamos:</div>
-        <div class="py-3 px-4">
-          <div class="opacity-80">Lunes a jueves:</div>
-          <div class="text-white">8:15 a 18:30</div>
-        </div>
-        <div class="py-3 px-4">
-          <div class="opacity-80">Viernes:</div>
-          <div class="text-white">8:15 a 15:00</div>
-        </div>
-        <div class="py-3 px-4">
-          <div class="opacity-80">Sábados, Domingos y Feriados:</div>
-          <div class="text-white">07:30 a 15:00</div>
+<section class="mt-12 w-full">
+  <div class="text-neutral-100" style="background-color:#353535;">
+    <div class="flex justify-center gap-20 items-center text-sm py-3">
+      
+      <!-- Agrupamos "Te esperamos" + Bloque 1 -->
+      <div class="flex items-center gap-10">
+        <div class="font-semibold text-lg">Te esperamos:</div>
+        <div class="">
+          <div class="text-white font-semibold">Lunes a jueves:</div>
+          <div class="opacity-90">8:15 a 13:30</div>
         </div>
       </div>
+
+      <!-- Separador -->
+      <div class="mx-8 w-px h-8 bg-white/25"></div>
+
+      <!-- Bloque 2 -->
+      <div class="">
+        <div class="text-white font-semibold">Viernes:</div>
+        <div class="opacity-90">8:15 a 15:00</div>
+      </div>
+
+      <!-- Separador -->
+      <div class="mx-8 w-px h-8 bg-white/25"></div>
+
+      <!-- Bloque 3 -->
+      <div class="">
+        <div class="text-white font-semibold">Sábados, Domingos y Feriados:</div>
+        <div class="opacity-90">07:30 a 15:00</div>
+      </div>
+
     </div>
   </div>
 </section>
+
+
+
+
+<!-- Script de aparición -->
+<script>
+  (function () {
+    const els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window) || els.length === 0) {
+      els.forEach(el => el.classList.add('show'));
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
+    els.forEach(el => io.observe(el));
+  })();
+</script>
+
 {% endblock %}

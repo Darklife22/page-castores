@@ -1,162 +1,230 @@
-
 {% extends "base.html" %}
 {% block title %}Inicio{% endblock %}
 {% block content %}
-  <!-- Hero -->
-  <section class="max-w-6xl mx-auto px-4 pt-14 md:pt-20 pb-12 grid md:grid-cols-2 gap-10 items-center">
-    <div class="space-y-5">
-      <div class="space-y-1">
-        <h1 class="text-4xl text-brand md:text-5xl font-extrabold tracking-tight">Salteñas <br/> <span class="text-brand">Bolivianas</span></h1>
+
+<style>
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.show{opacity:1;transform:none}
+  .card-soft{transition:transform .3s ease,box-shadow .3s ease}
+  .card-soft:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(0,0,0,.12)}
+  @keyframes bob{0%,100%{transform:translateY(0) rotate(-90deg)}50%{transform:translateY(-6px) rotate(-90deg)}}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1!important;transform:none!important;transition:none!important}
+    .card-soft{transition:none!important}
+  }
+</style>
+
+<style>
+/* SOLO mobile */
+@media (max-width: 767px){
+  .hero{ position: relative; padding-bottom: 25vw; }
+  .hero .hero-desc{ display: none; }
+  .hero .hero-text{ padding-right: 46vw; }
+
+  .hero h1{ font-size: 1.6rem; }
+
+  .hero .hero-img{
+    position: absolute;
+    right: -34vw;     /* sale más a la derecha: media salteña */
+    top: 1rem;
+    width: 70vw;
+    height: 70vw;
+    border-radius: 9999px;
+    object-fit: cover;
+    box-shadow: 0 18px 40px rgba(0,0,0,.18);
+    pointer-events: none; user-select: none;
+
+    /* perf / rotación suave */
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    transform-origin: 50% 50%;
+  }
+}
+</style>
+
+<!-- ====== HERO ====== -->
+<section class="hero max-w-7xl mx-auto px-6 md:px-12 pt-14 md:pt-20 pb-12 grid md:grid-cols-2 gap-10 items-center">
+  <div class="hero-text space-y-5 reveal">
+    <div class="space-y-1">
+      <!-- MOBILE -->
+      <div class="md:hidden text-left">
+        <h1 class="text-[34px] leading-tight font-extrabold tracking-tight">
+          <span class="text-brand block">Salteñas</span>
+          <span class="text-brand block">Bolivianas</span>
+          <span class="text-ink block">Tradicionales</span>
+        </h1>
+      </div>
+      <!-- DESKTOP (sin cambios) -->
+      <div class="hidden md:block">
+        <h1 class="text-4xl text-brand md:text-5xl font-extrabold tracking-tight">
+          Salteñas <br/> <span class="text-brand">Bolivianas</span>
+        </h1>
         <p class="text-4xl md:text-5xl font-extrabold tracking-tight">Tradicionales</p>
       </div>
-      <p class="text-ink/70 max-w-md">Crujientes por fuera, jugosas por dentro. Preparadas cada mañana con ingredientes frescos y recetas de casa.</p>
-      <div class="flex gap-3">
-        <a href="https://wa.me/59168525225?text=¡Hola!%20Quiero%20hacer%20un%20pedido%20de%20salteñas%20🍴"
-          target="_blank"
-          class="inline-flex items-center rounded-xl bg-brand text-white text-sm px-5 py-2.5 shadow-soft hover:bg-brand-dark transition">
-          Pedir Ahora
-        </a>
-      </div>
     </div>
-    <div class="flex justify-center">
-      <img class="w-80 h-80 object-cover rounded-full shadow-soft" src="{{ url_for('static', filename='img/salteña.png') }}" alt="Bandeja de salteñas" onerror="this.src='https://picsum.photos/600';">
-    </div>
-  </section>
 
-  <!-- Salteñas & Jugos -->
+    <p class="hero-desc text-ink/70 max-w-md md:text-left text-center md:mx-0 mx-auto">
+      Crujientes por fuera, jugosas por dentro. Preparadas cada mañana con ingredientes frescos y recetas de casa.
+    </p>
+
+    <div class="flex md:justify-start justify-start">
+      <a href="https://wa.me/59168525225?text=¡Hola!%20Quiero%20hacer%20un%20pedido%20de%20salteñas%20🍴"
+         target="_blank"
+         class="inline-flex items-center rounded-xl bg-brand text-white text-sm px-5 py-2.5 shadow-soft hover:bg-brand-dark transition">
+        Pedir Ahora
+      </a>
+    </div>
+  </div>
+
+  <div class="flex md:justify-center justify-end">
+    <img id="saltenaIndex"
+         class="hero-img w-56 h-56 md:w-80 md:h-80 object-cover rounded-full shadow-soft reveal"
+         src="{{ url_for('static', filename='img/saltena.png') }}"
+         alt="Bandeja de salteñas"
+         onerror="this.src='https://picsum.photos/600';">
+  </div>
+</section>
+
+<!-- ====== Salteñas & Jugos ====== -->
 <section class="relative overflow-hidden">
   <div class="absolute inset-0 -z-10 bg-gradient-to-b from-white to-brand-light/30"></div>
 
-  <div class="relative max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
-
-<img
-  src="{{ url_for('static', filename='img/castor-lateral.png') }}"
-  alt=""
-  aria-hidden="true"
-  class="hidden lg:block pointer-events-none select-none
-         absolute top-32 right-[-40px] 
-         rotate-[-90deg]  <!-- desplaza hacia afuera -->
-         w-64                             <!-- ajusta tamaño -->
-         drop-shadow-lg"
-/>
-
+  <div class="relative max-w-7xl mx-auto px-6 md:px-12 grid md:grid-cols-2 gap-10 items-center">
+    <img
+      src="{{ url_for('static', filename='img/castor-lateral.png') }}"
+      alt=""
+      aria-hidden="true"
+      class="hidden lg:block pointer-events-none select-none absolute top-32 right-[-40px] w-64 drop-shadow-lg reveal"
+      style="animation: bob 5s ease-in-out infinite;">
   </div>
 
-  <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
-    <img class="hidden md:block w-full h-[520px] object-cover object-[100%] rounded-2xl"
-     src="{{ url_for('static', filename='img/salteñas-lateral.png') }}"
-     alt="Close up salteñas"
-     onerror="this.src='https://picsum.photos/1200/800';">
+  <div class="max-w-7xl mx-auto px-6 md:px-12 grid md:grid-cols-2 gap-10 items-center">
+    <img class="hidden md:block w-full h-[520px] object-cover object-[100%] rounded-2xl reveal"
+         src="{{ url_for('static', filename='img/saltenas-lateral.png') }}"
+         alt="Close up salteñas"
+         onerror="this.src='https://picsum.photos/1200/800';">
 
+    <div class="py-10 reveal">
+      <h2 class="text-2xl md:text-2xl font-extrabold mb-3 text-center md:text-left text-brand md:text-inherit">
+        Nuestras Salteñas
+      </h2>
+      <p class="text-sm text-ink/70 text-center md:text-left">Contamos con salteñas de:</p>
 
-    <div class="py-10">
-      <h2 class="text-2xl font-extrabold mb-3">Nuestras Salteñas</h2>
-      <p class="text-sm text-ink/70">Contamos con salteñas de:</p>
-
-      <div class="grid grid-cols-[1fr_1px_1fr] gap-4 mt-4 text-lg pr-32">
+      <div class="grid grid-cols-[1fr_1px_1fr] gap-4 mt-4 text-lg md:pr-32">
         <ul class="space-y-2">
-          <li>🥩 <strong class="pl-6">Carne</strong></li>
-          <li>🍗 <strong class="pl-6">Pollo</strong></li>
-          <li>🥘 <strong class="pl-6">Fricasé</strong></li>
-          <li>🥩🍗 <strong>Mixta</strong></li>
-          <li>🧀 <strong class="pl-6">Queso</strong></li>
+          <li class="flex items-center gap-2"><span>🥩</span><strong>Carne</strong></li>
+          <li class="flex items-center gap-2"><span>🍗</span><strong>Pollo</strong></li>
+          <li class="flex items-center gap-2"><span>🥘</span><strong>Fricasé</strong></li>
+          <li class="flex items-center gap-2"><span>🥩🍗</span><strong>Mixta</strong></li>
+          <li class="flex items-center gap-2"><span>🧀</span><strong>Queso</strong></li>
         </ul>
-
-        <!-- divisor -->
-        <div class="bg-black/10"></div>
-
+        <div class="bg-black/15 self-stretch w-px"></div>
         <ul class="space-y-2">
           <li><strong>Dulce</strong></li>
-          <li><strong>Picante</strong> 🌶️</li>
-          <li><strong>Súper Picante</strong> 🌶️🌶️</li>
+          <li><strong class="text-red-600">Picante</strong> 🌶️🌶️</li>
+          <li><strong class="text-red-600">Súper Picante</strong> 🌶️🌶️🌶️</li>
         </ul>
       </div>
 
-     <a href="{{ url_for('menu') }}" class="mt-4 inline-flex items-center rounded-xl bg-brand text-white text-sm px-5 py-2.5 shadow-soft hover:bg-brand-dark transition">Ver Menú</a>
+      <div class="mt-4 flex md:justify-start justify-center">
+        <a href="{{ url_for('menu') }}"
+           class="inline-flex items-center rounded-xl bg-brand text-white text-sm px-5 py-2.5 shadow-soft hover:bg-brand-dark transition">
+          Ver Menú
+        </a>
+      </div>
+    </div>
   </div>
-  </div>
 
-  <section class="max-w-6xl mx-auto px-4 py-12 grid md:grid-cols-2 gap-8 items-center">
-  <div>
-    <h2 class="text-3xl font-extrabold text-brand mb-3">Nuestros Jugos</h2>
-    <p class="text-lg text-ink/70 mb-4">Contamos con sabores:</p>
+  <section class="max-w-7xl mx-auto px-6 md:px-12 py-12 grid md:grid-cols-2 gap-8 items-center">
+    <div class="reveal order-2 md:order-1">
+      <h2 class="text-3xl md:text-3xl font-extrabold text-center md:text-left text-brand md:text-inherit mb-3">Nuestros Jugos</h2>
+      <p class="text-lg text-ink/70 mb-4 text-center md:text-left">Contamos con sabores:</p>
 
-    <!-- Lista Jugos + Separador + Leche/Agua con precio -->
-    <div class="grid grid-cols-[1fr_1px_1fr] gap-8 items-start">
-      <!-- Columna izquierda (jugos) -->
-      <ul class="space-y-2 text-[18px] text-black font-semibold">
-        <li class="flex items-center gap-2"><span>🍋</span> <span>Limón</span></li>
-        <li class="flex items-center gap-2"><span>🍓</span> <span>Frutilla</span></li>
-        <li class="flex items-center gap-2"><span>🍌</span> <span>Plátano</span></li>
-        <li class="flex items-center gap-2"><span>🍉</span> <span>Sandía</span></li>
-        <li class="flex items-center gap-2"><span>🍍</span> <span>Piña</span></li>
-      </ul>
-
-      <!-- Separador vertical -->
-      <div class="self-stretch w-px bg-black/20"></div>
-
-      <!-- Columna derecha (leche/agua con precio al extremo derecho) -->
-      <ul class="self-center space-y-2">
-        <li class="flex items-center justify-between gap-4">
-          <div class="flex items-center gap-3 text-[18px] font-semibold">
+      <div class="grid grid-cols-[1fr_1px_1fr] gap-8 items-start">
+        <ul class="space-y-2 text-[18px] text-black font-semibold">
+          <li class="flex items-center gap-2"><span>🍋</span> <span>Limón</span></li>
+          <li class="flex items-center gap-2"><span>🍓</span> <span>Frutilla</span></li>
+          <li class="flex items-center gap-2"><span>🍌</span> <span>Plátano</span></li>
+          <li class="flex items-center gap-2"><span>🍉</span> <span>Sandía</span></li>
+          <li class="flex items-center gap-2"><span>🍍</span> <span>Piña</span></li>
+        </ul>
+        <div class="self-stretch w-px bg-black/20"></div>
+        <ul class="self-center space-y-4">
+          <li class="flex items-center gap-3 text-[18px] font-semibold">
             <span>🥛</span> <span>Leche</span>
-          </div>
           </li>
-
-        <li class="flex items-center justify-between gap-4">
-          <div class="flex items-center gap-3 text-[18px] font-semibold">
+          <li class="flex items-center gap-3 text-[18px] font-semibold">
             <span>💧</span> <span>Agua</span>
-          </div>
           </li>
-      </ul>
+        </ul>
+      </div>
+
+      <div class="mt-4 flex md:justify-start justify-center">
+        <a href="{{ url_for('menu') }}"
+           class="inline-flex items-center rounded-xl bg-brand text-white text-sm px-5 py-2.5 shadow-soft hover:bg-brand-dark transition">
+          Ver Menú
+        </a>
+      </div>
     </div>
 
-
-
-    <a href="{{ url_for('menu') }}" class="mt-4 inline-flex items-center rounded-xl bg-brand text-white text-sm px-5 py-2.5 shadow-soft hover:bg-brand-dark transition">Ver Menú</a>
-  </div>
-
-  <div class="relative">
-    <img class="w-full h-[520px]  object-cover rounded-[28px] shadow-soft"
-         src="{{ url_for('static', filename='img/jugos.png') }}"
-         alt="Jugos naturales" onerror="this.src='https://picsum.photos/1200/700'">
-  </div>
-</section>
+    <div class="relative reveal order-1 md:order-2">
+      <img class="w-full h-[220px] sm:h-[300px] md:h-[520px] object-cover rounded-[28px] shadow-soft"
+           src="{{ url_for('static', filename='img/jugos.png') }}"
+           alt="Jugos naturales" onerror="this.src='https://picsum.photos/1200/700'">
+    </div>
+  </section>
 </section>
 
-<!-- Ofertas -->
-<section id="ofertas" class="max-w-6xl mx-auto px-4 pt-16">
-  <h2 class="text-3xl font-extrabold text-center mb-8">Ofertas Para Ti</h2>
+<!-- ====== Ofertas ====== -->
+<section id="ofertas" class="max-w-7xl mx-auto px-6 md:px-12 pt-16">
+  <h2 class="text-3xl font-extrabold text-center mb-8 reveal">Ofertas Para Ti</h2>
   <div class="grid md:grid-cols-2 gap-6">
-    
-    <article class="bg-white rounded-2xl border border-black/10 overflow-hidden shadow-soft">
-      <img class="w-full aspect-square object-cover"
+    <article class="bg-white rounded-2xl border border-black/10 overflow-hidden shadow-soft card-soft reveal">
+      <img class="w-full aspect-[4/3] md:aspect-square object-cover"
            src="{{ url_for('static', filename='img/combo1.png') }}"
            alt="Combo Bicentenario"
            onerror="this.src='https://picsum.photos/600/600';">
     </article>
 
-    <article class="bg-white rounded-2xl border border-black/10 overflow-hidden shadow-soft">
-      <img class="w-full aspect-square object-cover"
+    <article class="bg-white rounded-2xl border border-black/10 overflow-hidden shadow-soft card-soft reveal">
+      <img class="w-full aspect-[4/3] md:aspect-square object-cover"
            src="{{ url_for('static', filename='img/combo2.png') }}"
            alt="Combo para compartir"
            onerror="this.src='https://picsum.photos/600/600';">
     </article>
-
   </div>
 </section>
 
-
-  <!-- Contacto -->
-  <section class="max-w-6xl mx-auto px-4 pt-16">
-    <div class="grid md:grid-cols-2 gap-6">
-      <div class="bg-neutral-900 text-neutral-50 pl-32 rounded-2xl p-8 relative overflow-hidden">
-        <h3 class="text-xl font-semibold">Información de Contacto</h3>
-        <p class="text-sm text-neutral-300 mt-2  max-w-sm">¡Déjanos tu mensaje y nuestro equipo se encargará de responderte en menos de 72 horas!</p>
-        <div class="absolute -bottom-10 -right-6 w-40 h-40 bg-brand rounded-full opacity-80"></div>
+<!-- ====== Contacto ====== -->
+<section class="max-w-7xl mx-auto px-6 md:px-12 pt-16">
+  <div class="grid md:grid-cols-2 gap-6 items-center">
+    <div class="reveal rounded-2xl p-6 md:p-8 relative overflow-hidden text-neutral-50 bg-neutral-900 md:pl-32 md:min-h-[520px]" style="background-color:#353535;">
+      <div class="md:hidden text-center">
+        <h3 class="text-2xl font-extrabold">Información de Contacto</h3>
+        <p class="text-sm text-neutral-300 mt-3 max-w-lg mx-auto">
+          ¡Déjanos tu mensaje y nuestro equipo se encargará de responderte en menos de 72 horas!
+        </p>
+        <div class="mt-5 space-y-2">
+          <div class="text-2xl">📞</div>
+          <div class="text-lg tracking-wide">68525225</div>
+          <div class="text-2xl mt-3">✉️</div>
+          <a href="mailto:contacto@loscastoresbo.com" class="underline underline-offset-2">contacto@loscastoresbo.com</a>
+        </div>
       </div>
 
-      <form method="post" action="{{ url_for('contacto') }}" class="bg-transparent">
+      <div class="hidden md:block">
+        <h3 class="text-xl font-semibold">Información de Contacto</h3>
+        <p class="text-md text-neutral-300 mt-2 max-w-sm">¡Déjanos tu mensaje y nuestro equipo se encargará de responderte en menos de 72 horas!</p>
+      </div>
+
+      <div aria-hidden="true" class="pointer-events-none absolute bottom-0 right-0 w-[220px] h-[220px] hidden md:block">
+        <div class="absolute -bottom-16 -right-16 w-[240px] h-[240px] rounded-full bg-white/10"></div>
+        <div class="absolute top-6 left-6 w-[120px] h-[120px] rounded-full bg-brand shadow-[0_6px_16px_rgba(0,0,0,0.15)]"></div>
+      </div>
+    </div>
+
+    <form method="post" action="{{ url_for('contacto') }}" class="bg-transparent reveal">
       {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
           {% for cat, msg in messages %}
@@ -165,42 +233,31 @@
         {% endif %}
       {% endwith %}
 
-      <!-- Fila 1 -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
         <div>
           <label class="block text-[11px] text-ink/60">Nombre</label>
-          <input name="nombre"
-                 class="block w-full border-0 border-b border-black/20 focus:border-brand focus:ring-0 text-sm py-1.5"
-                 placeholder="" required>
+          <input name="nombre" class="block w-full border-0 border-b border-black/20 focus:border-brand focus:ring-0 text-base md:text-sm py-2 md:py-1.5" required>
         </div>
         <div>
           <label class="block text-[11px] text-ink/60">Apellido</label>
-          <input name="apellido"
-                 class="block w-full border-0 border-b border-black/20 focus:border-brand focus:ring-0 text-sm py-1.5"
-                 placeholder="Doe" required>
+          <input name="apellido" class="block w-full border-0 border-b border-black/20 focus:border-brand focus:ring-0 text-base md:text-sm py-2 md:py-1.5" placeholder="Doe" required>
         </div>
       </div>
 
-      <!-- Fila 2 -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-8">
         <div>
           <label class="block text-[11px] text-ink/60">Email</label>
-          <input type="email" name="email"
-                 class="block w-full border-0 border-b border-black/20 focus:border-brand focus:ring-0 text-sm py-1.5"
-                 placeholder="" required>
+          <input type="email" name="email" class="block w-full border-0 border-b border-black/20 focus:border-brand focus:ring-0 text-base md:text-sm py-2 md:py-1.5" required>
         </div>
         <div>
           <label class="block text-[11px] text-ink/60">Número Teléfono</label>
-          <input type="tel" name="telefono"
-                 class="block w-full border-0 border-b border-black/20 focus:border-brand focus:ring-0 text-sm py-1.5"
-                 placeholder="70698639">
+          <input type="tel" name="telefono" class="block w-full border-0 border-b border-black/20 focus:border-brand focus:ring-0 text-base md:text-sm py-2 md:py-1.5" placeholder="70698639">
         </div>
       </div>
 
-      <!-- Tema -->
       <div class="mt-8">
         <p class="text-[11px] text-ink/60 mb-2">Selecciona Tema</p>
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 text-[13px]">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 text-[14px] md:text-[13px]">
           <label class="inline-flex items-center gap-2">
             <input class="accent-brand" type="radio" name="tema" value="Quiero unirme a su equipo" checked>
             <span>Quiero unirme a su equipo</span>
@@ -220,21 +277,89 @@
         </div>
       </div>
 
-      <!-- Mensaje -->
       <div class="mt-8">
         <label class="block text-[11px] text-ink/60">Mensaje</label>
-        <textarea name="mensaje" rows="3"
-                  class="block w-full border-0 border-b border-black/20 focus:border-brand focus:ring-0 text-sm py-1.5"
-                  placeholder="Escribe tu mensaje..."></textarea>
+        <textarea name="mensaje" rows="3" class="block w-full border-0 border-b border-black/20 focus:border-brand focus:ring-0 text-base md:text-sm py-2 md:py-1.5" placeholder="Escribe tu mensaje..."></textarea>
       </div>
 
-      <!-- Botón alineado a la derecha -->
-      <div class="mt-8 flex justify-end">
-        <button class="inline-flex items-center rounded-xl bg-brand text-white text-sm px-5 py-2.5 shadow-soft hover:bg-brand-dark transition">
-          Enviar Mensaje
+      <div class="mt-8 flex md:justify-end justify-center">
+        <button class="inline-flex items-center rounded-xl bg-brand text-white text-base md:text-sm px-6 py-3 md:px-5 md:py-2.5 shadow-soft hover:bg-brand-dark transition">
+          Enviar
         </button>
       </div>
     </form>
+  </div>
+</section>
 
-  </section>
+<script>
+  // ==== Fade-in con IntersectionObserver ====
+  (function () {
+    const els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window) || els.length === 0) {
+      els.forEach(el => el.classList.add('show'));
+      return;
+    }
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    els.forEach(el => io.observe(el));
+  })();
+
+  // ==== Rotación SUAVE según posición en viewport (estable en móvil) ====
+  function lerp(a,b,t){ return a + (b - a) * t; }
+
+  function attachSmoothSpin(el, opts = {}){
+    if(!el) return;
+    const maxDeg = opts.maxDeg ?? 24;   // amplitud
+    const ease   = opts.ease   ?? 0.16; // suavidad
+
+    let current = 0, target = 0, running = false;
+    let vh = window.innerHeight || document.documentElement.clientHeight;
+
+    function visible(r){ return !(r.bottom <= 0 || r.top >= vh); }
+
+    function computeTarget(){
+      const r = el.getBoundingClientRect();
+      if (!visible(r)){ target = 0; return false; }
+      const mid = r.top + r.height/2;
+      let ratio = (vh/2 - mid) / (vh/2); // -1..1 respecto al centro
+      ratio = Math.max(-1, Math.min(1, ratio));
+      target = ratio * maxDeg;
+      return true;
+    }
+
+    function frame(){
+      current = lerp(current, target, ease);
+      el.style.transform = `rotate(${current}deg)`;
+
+      const near = Math.abs(current - target) < 0.1;
+      const r = el.getBoundingClientRect();
+      if (!visible(r) && near){ running = false; return; }
+      requestAnimationFrame(frame);
+    }
+
+    function kick(){
+      computeTarget();
+      if (!running){ running = true; requestAnimationFrame(frame); }
+    }
+
+    window.addEventListener('scroll', kick, {passive:true});
+    window.addEventListener('touchmove', kick, {passive:true});
+    window.addEventListener('resize', () => { vh = window.innerHeight || document.documentElement.clientHeight; kick(); });
+    window.addEventListener('orientationchange', () => { vh = window.innerHeight || document.documentElement.clientHeight; kick(); });
+
+    kick();
+  }
+
+  attachSmoothSpin(document.getElementById('saltenaIndex'), {
+    maxDeg: 24,  // 18–30 según gusto
+    ease: 0.16   // 0.12–0.18: más o menos pegado
+  });
+</script>
+
 {% endblock %}

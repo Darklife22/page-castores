@@ -2,40 +2,63 @@
 {% block title %}Menú{% endblock %}
 
 {% block content %}
+<!-- Estilos mínimos para las animaciones -->
+<style>
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.show { opacity: 1; transform: none; }
+  /* Mejora de rendimiento en la imagen que rota */
+  #saltenaHero { will-change: transform; transform-origin: 50% 50%; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  }
+</style>
+
 <!-- HERO -->
-<section class="max-w-6xl mx-auto px-4 pt-14 md:pt-20 grid md:grid-cols-2 gap-10 items-center">
-  <div class="space-y-4">
-    <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">
-      <span class="text-brand">Desde Salteñas</span><br>
-      Hasta Jugos<br>
-      <span class="text-black">100% Naturales</span>
-    </h1>
-    <a href="https://wa.me/59168525225?text=¡Hola!%20Quiero%20hacer%20un%20pedido%20de%20salteñas%20🍴"
-          target="_blank"
-           class="inline-flex items-center rounded-xl bg-brand text-white text-sm px-5 py-2.5 shadow-soft hover:bg-brand-dark transition">Pedir Ahora</a>
-  </div>
-  <div class="flex justify-center">
-    <img class="w-80 h-80 object-cover rounded-full shadow-soft"
-         src="{{ url_for('static', filename='img/salteñas.png') }}"
-         alt="Salteña" onerror="this.src='https://picsum.photos/600';">
+<section class="w-full pt-14 md:pt-20">
+  <div class="max-w-7xl mx-auto px-6 md:px-12 grid md:grid-cols-2 gap-10 items-center">
+    <div class="space-y-4 reveal">
+      <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">
+        <span class="text-brand">Desde Salteñas</span><br>
+        Hasta Jugos<br>
+        <span class="text-black">100% Naturales</span>
+      </h1>
+      <a href="https://wa.me/59168525225?text=¡Hola!%20Quiero%20hacer%20un%20pedido%20de%20salteñas%20🍴"
+         target="_blank"
+         class="inline-flex items-center rounded-xl bg-brand text-white text-sm px-5 py-2.5 shadow-soft hover:bg-brand-dark transition">
+        Pedir Ahora
+      </a>
+    </div>
+
+    <div class="flex justify-center">
+      <!-- Imagen que rota con el scroll -->
+      <img id="saltenaHero"
+           class="w-80 h-80 md:w-96 md:h-96 object-cover rounded-full shadow-soft reveal"
+           src="{{ url_for('static', filename='img/saltenas.png') }}"
+           alt="Salteña"
+           onerror="this.src='https://picsum.photos/600'">
+    </div>
   </div>
 </section>
 
 <!-- NUESTRAS SALTEÑAS -->
 <section class="mt-10 md:mt-16 bg-neutral-50 border-y border-black/5">
-  <div class="max-w-6xl mx-auto px-4 py-12">
-    <h2 class="text-3xl font-extrabold text-center text-brand mb-8">Nuestras Salteñas</h2>
+  <div class="max-w-7xl mx-auto px-6 md:px-12 py-12">
+    <h2 class="text-3xl font-extrabold text-center text-brand mb-8 reveal">Nuestras Salteñas</h2>
 
     <!-- Fila de productos -->
     <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-8 text-center text-[18px]">
       <!-- Carne -->
-      <div>
+      <div class="reveal">
         <h3 class="font-bold text-2xl mb-3">Carne</h3>
         <div class="relative inline-block">
           <img class="w-36 h-36 rounded-full object-cover shadow-soft"
-               src="{{ url_for('static', filename='img/salteñas/carne.png') }}"
+               src="{{ url_for('static', filename='img/saltenas/carne.png') }}"
                alt="Salteña de carne" onerror="this.src='https://picsum.photos/400'">
-          <span class="absolute -top-1 -right-1 text-[11px] px-2 py-1 rounded-full bg-white border border-black/10 shadow-soft">11 Bs</span>
+              <span class="absolute -top-1 -right-1 flex items-center justify-center 
+                w-10 h-10 text-[11px] font-semibold rounded-full 
+                bg-gray-200 border border-black/10 shadow-soft text-white" style="background-color:#353535;">
+                11 Bs
+              </span>
         </div>
         <ul class="mt-3 text-[18px]">
           <li>Dulce</li>
@@ -45,14 +68,18 @@
       </div>
 
       <!-- Pollo -->
-      <div>
+      <div class="reveal">
         <h3 class="font-bold text-2xl mb-3">Pollo</h3>
         <div class="relative inline-block">
           <img class="w-36 h-36 rounded-full object-cover shadow-soft"
-               src="{{ url_for('static', filename='img/salteñas/pollo.png') }}"
+               src="{{ url_for('static', filename='img/saltenas/pollo.png') }}"
                alt="Salteña de pollo" onerror="this.src='https://picsum.photos/401'">
-          <span class="absolute -top-1 -right-1 text-[11px] px-2 py-1 rounded-full bg-white border border-black/10 shadow-soft">11 Bs</span>
-        </div>
+              <span class="absolute -top-1 -right-1 flex items-center justify-center 
+                w-10 h-10 text-[11px] font-semibold rounded-full 
+                bg-gray-200 border border-black/10 shadow-soft text-white" style="background-color:#353535;">
+                11 Bs
+              </span>
+          </div>
         <ul class="mt-3 text-[18px]">
           <li>Dulce</li>
           <li class="text-red-600 font-semibold">Picante</li>
@@ -61,27 +88,35 @@
       </div>
 
       <!-- Mixta -->
-      <div>
+      <div class="reveal">
         <h3 class="font-bold text-2xl mb-3">Mixta</h3>
         <div class="relative inline-block">
           <img class="w-36 h-36 rounded-full object-cover shadow-soft"
-               src="{{ url_for('static', filename='img/salteñas/mixtas.png') }}"
+               src="{{ url_for('static', filename='img/saltenas/mixtas.png') }}"
                alt="Salteña mixta" onerror="this.src='https://picsum.photos/402'">
-          <span class="absolute -top-1 -right-1 text-[11px] px-2 py-1 rounded-full bg-white border border-black/10 shadow-soft">11 Bs</span>
-        </div>
+              <span class="absolute -top-1 -right-1 flex items-center justify-center 
+                w-10 h-10 text-[11px] font-semibold rounded-full 
+                bg-gray-200 border border-black/10 shadow-soft text-white" style="background-color:#353535;">
+                11 Bs
+              </span>
+          </div>
         <ul class="mt-3 text-[18px]">
           <li class="text-red-600 font-semibold">Picante</li>
         </ul>
       </div>
 
       <!-- Fricasé -->
-      <div>
+      <div class="reveal">
         <h3 class="font-bold text-2xl mb-3">Fricasé</h3>
         <div class="relative inline-block">
           <img class="w-36 h-36 rounded-full object-cover shadow-soft"
-               src="{{ url_for('static', filename='img/salteñas/fricase.png') }}"
+               src="{{ url_for('static', filename='img/saltenas/fricase.png') }}"
                alt="Salteña fricasé" onerror="this.src='https://picsum.photos/403'">
-          <span class="absolute -top-1 -right-1 text-[11px] px-2 py-1 rounded-full bg-white border border-black/10 shadow-soft">11 Bs</span>
+              <span class="absolute -top-1 -right-1 flex items-center justify-center 
+                w-10 h-10 text-[11px] font-semibold rounded-full 
+                bg-gray-200 border border-black/10 shadow-soft text-white" style="background-color:#353535;">
+                11 Bs
+              </span>
         </div>
         <ul class="mt-3 text-[18px]">
           <li class="text-red-600 font-semibold">Picante</li>
@@ -89,106 +124,212 @@
       </div>
 
       <!-- Queso -->
-      <div>
+      <div class="reveal">
         <h3 class="font-bold text-2xl mb-3">Queso</h3>
         <div class="relative inline-block">
           <img class="w-36 h-36 rounded-full object-cover shadow-soft"
-               src="{{ url_for('static', filename='img/salteñas/queso.png') }}"
+               src="{{ url_for('static', filename='img/saltenas/queso.png') }}"
                alt="Salteña de queso" onerror="this.src='https://picsum.photos/404'">
-          <span class="absolute -top-1 -right-1 text-[11px] px-2 py-1 rounded-full bg-white border border-black/10 shadow-soft">11 Bs</span>
+              <span class="absolute -top-1 -right-1 flex items-center justify-center 
+                w-10 h-10 text-[11px] font-semibold rounded-full 
+                bg-gray-200 border border-black/10 shadow-soft text-white" style="background-color:#353535;">
+                11 Bs
+              </span>  
         </div>
       </div>
     </div>
 
-    <p class="text-[12px]  mt-6 text-black font-semibold italic">*Salteña Dulce no lleva aceituna</p>
+    <p class="text-[14px] mt-6 text-black font-semibold italic reveal">*Salteña Dulce no lleva aceituna</p>
   </div>
 </section>
 
 <!-- NUESTROS JUGOS -->
-<section class="max-w-6xl mx-auto px-4 py-12 grid md:grid-cols-2 gap-8 items-center">
-  <div>
-    <h2 class="text-3xl font-extrabold text-brand mb-3">Nuestros Jugos</h2>
-    <p class="text-lg text-ink/70 mb-4">Contamos con sabores:</p>
+<section class="w-full py-12">
+  <div class="max-w-7xl mx-auto px-6 md:px-12 grid md:grid-cols-2 gap-8 items-center">
+    <div class="reveal">
+      <h2 class="text-4xl font-extrabold text-brand mb-3">Nuestros Jugos</h2>
+      <p class="text-xl text-ink/70 mb-4">Contamos con sabores:</p>
 
-    <!-- Lista Jugos + Separador + Leche/Agua con precio -->
-    <div class="grid grid-cols-[1fr_1px_1fr] gap-8 items-start">
-      <!-- Columna izquierda (jugos) -->
-      <ul class="space-y-2 text-[18px] text-black font-semibold">
-        <li class="flex items-center gap-2"><span>🍋</span> <span>Limón</span></li>
-        <li class="flex items-center gap-2"><span>🍓</span> <span>Frutilla</span></li>
-        <li class="flex items-center gap-2"><span>🍌</span> <span>Plátano</span></li>
-        <li class="flex items-center gap-2"><span>🍉</span> <span>Sandía</span></li>
-        <li class="flex items-center gap-2"><span>🍍</span> <span>Piña</span></li>
-        <li class="flex items-center gap-2"><span>🥭</span> <span>Maracuyá</span></li>
-        <li class="flex items-center gap-2"><span>🍇</span> <span>Mora</span></li>
-        <li class="flex items-center gap-2"><span>🥭</span> <span>Papaya</span></li>
-        <li class="flex items-center gap-2"><span>🍊</span> <span>Tumbo</span></li>
-      </ul>
+      <div class="grid grid-cols-[1fr_1px_1fr] gap-8 items-start">
+        <!-- Columna izquierda (jugos) -->
+        <ul class="space-y-2 text-[22px] text-black font-semibold">
+          <li class="flex items-center gap-2"><span>🍋</span> <span>Limón</span></li>
+          <li class="flex items-center gap-2"><span>🍓</span> <span>Frutilla</span></li>
+          <li class="flex items-center gap-2"><span>🍌</span> <span>Plátano</span></li>
+          <li class="flex items-center gap-2"><span>🍉</span> <span>Sandía</span></li>
+          <li class="flex items-center gap-2"><span>🍍</span> <span>Piña</span></li>
+          <li class="flex items-center gap-2"><span>🥭</span> <span>Maracuyá</span></li>
+          <li class="flex items-center gap-2"><span>🍇</span> <span>Mora</span></li>
+          <li class="flex items-center gap-2"><span>🥭</span> <span>Papaya</span></li>
+          <li class="flex items-center gap-2"><span>🍊</span> <span>Tumbo</span></li>
+        </ul>
 
-      <!-- Separador vertical -->
-      <div class="self-stretch w-px bg-black/20"></div>
+        <!-- Separador vertical -->
+        <div class="self-stretch w-px bg-black/20"></div>
 
-      <!-- Columna derecha (leche/agua) -->
-      <ul class="self-center space-y-2 pr-20">
-        <li class="flex items-center justify-between gap-2">
-          <div class="flex items-center gap-3 text-[18px] font-semibold">
-            <span>🥛</span> <span>Leche</span>
-          </div>
-          <span class="inline-flex items-center justify-center text-white text-[12px] font-semibold bg-neutral-800 w-12 h-12 rounded-full">11 Bs</span>
-        </li>
+        <!-- Columna derecha (leche/agua) -->
+        <ul class="self-center space-y-2 pr-20">
+          <li class="flex items-center justify-between gap-2">
+            <div class="flex items-center  text-[22px] font-semibold">
+              <span>🥛</span> <span>Leche</span>
+            </div>
+            <span class="inline-flex items-center justify-center text-white text-[12px] font-semibold bg-neutral-800 w-12 h-12 rounded-full">11 Bs</span>
+          </li>
 
-        <li class="flex items-center justify-between gap-2">
-          <div class="flex items-center gap-3 text-[18px] font-semibold">
-            <span>💧</span> <span>Agua</span>
-          </div>
-          <span class="inline-flex items-center justify-center text-white text-[12px] font-semibold bg-neutral-800 w-12 h-12 rounded-full">9 Bs</span>
-        </li>
-      </ul>
+          <li class="flex items-center justify-between gap-2">
+            <div class="flex items-center text-[22px] font-semibold">
+              <span>💧</span> <span>Agua</span>
+            </div>
+            <span class="inline-flex items-center justify-center text-white text-[12px] font-semibold bg-neutral-800 w-12 h-12 rounded-full">9 Bs</span>
+          </li>
+        </ul>
+      </div>
+
+      <a href="https://wa.me/59168525225?text=¡Hola!%20Quiero%20hacer%20un%20pedido%20de%20salteñas%20🍴"
+         target="_blank"
+         class="mt-4 inline-flex items-center rounded-xl bg-brand text-white text-sm px-5 py-2.5 shadow-soft hover:bg-brand-dark transition">
+        Pedir Ahora
+      </a>
     </div>
 
-
-
-    <a href="https://wa.me/59168525225?text=¡Hola!%20Quiero%20hacer%20un%20pedido%20de%20salteñas%20🍴"
-          target="_blank"
-           class="mt-4 inline-flex items-center rounded-xl bg-brand text-white text-sm px-5 py-2.5 shadow-soft hover:bg-brand-dark transition">Pedir Ahora</a>
-  </div>
-
-  <div class="relative">
-    <img class="w-full h-[520px]  object-cover rounded-[28px] shadow-soft"
-         src="{{ url_for('static', filename='img/jugos.png') }}"
-         alt="Jugos naturales" onerror="this.src='https://picsum.photos/1200/700'">
+    <div class="relative reveal">
+      <img class="w-full h-[580px] object-cover rounded-[28px] shadow-soft"
+           src="{{ url_for('static', filename='img/jugos.png') }}"
+           alt="Jugos naturales" onerror="this.src='https://picsum.photos/1200/700'">
+    </div>
   </div>
 </section>
+
 <!-- POSTRES Y OTROS -->
-<section class="max-w-6xl mx-auto px-4 py-12 grid md:grid-cols-2 gap-10 items-center">
-  <!-- Imagen del postre -->
-  <div>
-    <img class="w-full h-[520px] object-cover rounded-[28px] shadow-soft"
-         src="{{ url_for('static', filename='img/flan.png') }}"
-         alt="Flan casero" onerror="this.src='https://picsum.photos/800/600'">
-  </div>
-
-  <!-- Lista de precios -->
-  <div>
-    <h2 class="text-3xl font-extrabold text-brand mb-6">Postres y Otros</h2>
-    <div class="grid grid-cols-[1fr_auto] gap-y-2 text-[18px]  pr-56 text-black font-semibold">
-      <span>Flan Casero</span><span class="bg-neutral-800 text-white text-xs px-2 py-1 rounded">12 Bs.</span>
-      <span>Soda 300 ml</span><span class="bg-neutral-800 text-white text-xs px-2 py-1 rounded">6 Bs.</span>
-      <span>Soda 500 ml</span><span class="bg-neutral-800 text-white text-xs px-2 py-1 rounded">11 Bs.</span>
-      <span>Soda de 1 Lt</span><span class="bg-neutral-800 text-white text-xs px-2 py-1 rounded">13 Bs.</span>
-      <span>Soda de 2 Lt</span><span class="bg-neutral-800 text-white text-xs px-2 py-1 rounded">18 Bs.</span>
-      <span>Agua 500 ml</span><span class="bg-neutral-800 text-white text-xs px-2 py-1 rounded">9 Bs.</span>
-      <span>Café con Agua</span><span class="bg-neutral-800 text-white text-xs px-2 py-1 rounded">5 Bs.</span>
-      <span>Café con Leche</span><span class="bg-neutral-800 text-white text-xs px-2 py-1 rounded">7 Bs.</span>
-      <span>Té</span><span class="bg-neutral-800 text-white text-xs px-2 py-1 rounded">5 Bs.</span>
-      <span>Mate</span><span class="bg-neutral-800 text-white text-xs px-2 py-1 rounded">5 Bs.</span>
+<section class="w-full py-12">
+  <div class="max-w-7xl mx-auto px-6 md:px-12 grid md:grid-cols-2 gap-10 items-center">
+    <!-- Imagen del postre -->
+    <div class="reveal">
+      <img class="w-full h-[580px] object-cover rounded-[28px] shadow-soft"
+           src="{{ url_for('static', filename='img/flan.png') }}"
+           alt="Flan casero" onerror="this.src='https://picsum.photos/800/600'">
     </div>
-    <a href="https://wa.me/59168525225?text=¡Hola!%20Quiero%20hacer%20un%20pedido%20de%20salteñas%20🍴"
-          target="_blank"
-           class="mt-6 inline-flex items-center rounded-xl bg-brand text-white text-sm px-5 py-2.5 shadow-soft hover:bg-brand-dark transition">
-      Pedir Ahora
-    </a>
+
+    <!-- Lista de precios con caja -->
+    <div class="reveal">
+      <h2 class="text-4xl font-extrabold text-brand mb-6">Postres y Otros</h2>
+
+      <div class="grid grid-cols-[1fr_auto] gap-x-4 lg:pr-64 text-[22px] text-black font-semibold">
+        <!-- Columna izquierda -->
+        <div class="space-y-2 mt-12">
+          <p>Flan Casero</p>
+          <p>Soda 300 ml</p>
+          <p>Soda 500 ml</p>
+          <p>Soda de 1 Lt</p>
+          <p>Soda de 2 Lt</p>
+          <p>Agua 500 ml</p>
+          <p>Café con Agua</p>
+          <p>Café con Leche</p>
+          <p>Té</p>
+          <p>Mate</p>
+        </div>
+
+        <!-- Columna derecha (caja completa de precios) -->
+        <div class="bg-gray-800 text-white rounded-lg shadow-soft px-4 py-3 space-y-2 w-28" style="background-color:#353535;">
+          <div class="border-b border-brand pb-1 mb-2 text-[18px] font-bold text-center">Precio</div>
+          <p class=" text-center">12 Bs.</p>
+          <p class=" text-center">6 Bs.</p>
+          <p class=" text-center">11 Bs.</p>
+          <p class=" text-center">13 Bs.</p>
+          <p class=" text-center">18 Bs.</p>
+          <p class=" text-center">9 Bs.</p>
+          <p class=" text-center">5 Bs.</p>
+          <p class=" text-center">7 Bs.</p>
+          <p class=" text-center">5 Bs.</p>
+          <p class=" text-center">5 Bs.</p>
+        </div>
+      </div>
+
+      <a href="https://wa.me/59168525225?text=¡Hola!%20Quiero%20hacer%20un%20%20pedido%20de%20salteñas%20🍴"
+         target="_blank"
+         class="mt-6 inline-flex items-center rounded-xl bg-brand text-white text-sm px-5 py-2.5 shadow-soft hover:bg-brand-dark transition">
+        Pedir Ahora
+      </a>
+    </div>
   </div>
 </section>
+
+
+<!-- Scripts de animación -->
+<script>
+  // --- Rotación al ritmo del scroll (sin easing, sin cola) ---
+  (function () {
+    const img = document.getElementById('saltenaHero');
+    if (!img) return;
+
+    const sensitivity = 0.10; // grados por pixel desplazado (ajusta 0.06–0.15)
+    const clampDeg = 0;       // 0 = sin tope; usa 20–30 si quieres limitar
+
+    let angle = 0;
+    let lastY = window.pageYOffset || document.documentElement.scrollTop;
+    let ticking = false;
+    let pendingDy = 0;
+
+    function isVisible(el) {
+      const r = el.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      return r.bottom > 0 && r.top < vh;
+    }
+
+    function applyTransform() {
+      if (clampDeg > 0) {
+        if (angle > clampDeg) angle = clampDeg;
+        if (angle < -clampDeg) angle = -clampDeg;
+      }
+      img.style.transform = `rotate(${angle}deg)`;
+    }
+
+    function onScrollLikeEvent() {
+      const y = window.pageYOffset || document.documentElement.scrollTop;
+      const dy = y - lastY;
+      lastY = y;
+
+      if (!isVisible(img)) return;
+
+      pendingDy += dy;
+
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(() => {
+          angle += pendingDy * sensitivity;
+          pendingDy = 0;
+          applyTransform();
+          ticking = false;
+        });
+      }
+    }
+
+    window.addEventListener('scroll', onScrollLikeEvent, { passive: true });
+    window.addEventListener('wheel', onScrollLikeEvent, { passive: true });
+    window.addEventListener('touchmove', onScrollLikeEvent, { passive: true });
+
+    applyTransform();
+  })();
+
+  // --- Fade-in de secciones con IntersectionObserver ---
+  (function () {
+    const els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window) || els.length === 0) {
+      els.forEach(el => el.classList.add('show'));
+      return;
+    }
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { root: null, rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+
+    els.forEach(el => io.observe(el));
+  })();
+</script>
 
 {% endblock %}

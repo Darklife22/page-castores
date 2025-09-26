@@ -2,13 +2,14 @@
 {% block title %}Contáctanos{% endblock %}
 
 {% block content %}
-<section class="max-w-6xl mx-auto px-4 pt-14 md:pt-20">
+<section class="max-w-7xl mx-auto px-6 md:px-12 pt-14 md:pt-20">
   <!-- Título centrado -->
   <h1 class="text-4xl md:text-5xl font-extrabold text-brand text-center mb-12">Contáctanos</h1>
 
-  <div class="grid md:grid-cols-2 gap-10 items-start">
-    <!-- Panel de información -->
-    <aside class="relative bg-neutral-900 text-neutral-50 rounded-[22px] p-8 overflow-hidden">
+  <div class="grid md:grid-cols-2 gap-10 items-center">
+    <!-- Panel de información (lado izquierdo) -->
+    <aside class="relative rounded-[22px] p-8 pl-32 overflow-hidden text-neutral-50 min-h-[520px]"
+           style="background-color:#353535;">
       <h3 class="text-xl font-semibold">Información de Contacto</h3>
       <p class="text-sm text-neutral-300 mt-2 max-w-sm">
         ¡Déjanos tu mensaje y nuestro equipo se encargará de responderte en menos de 72 horas!
@@ -17,26 +18,27 @@
       <ul class="mt-6 space-y-3 text-sm">
         <li class="flex items-center gap-3">
           <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/10">📞</span>
-          <span>68525225</span>
+          <span class="tracking-wide">68525225</span>
         </li>
         <li class="flex items-center gap-3">
           <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/10">✉️</span>
-          <a href="mailto:contacto@loscastoresbo.com" class="underline decoration-white/30 hover:text-white">
+          <a href="mailto:contacto@loscastoresbo.com"
+             class="underline decoration-white/30 underline-offset-2 hover:text-white">
             contacto@loscastoresbo.com
           </a>
         </li>
       </ul>
 
-      <!-- Decor círculo naranja/gris -->
-      <div class="absolute -bottom-7 left-1/2 -translate-x-1/2 md:left-auto md:right-10 md:translate-x-0">
-        <div class="relative w-36 h-36">
-          <div class="absolute inset-0 rounded-full bg-brand"></div>
-          <div class="absolute -bottom-6 -right-6 w-32 h-32 rounded-full bg-white/10"></div>
-        </div>
+      <!-- Deco exacto: cuarto de círculo gris + círculo naranja superpuesto -->
+      <div aria-hidden="true" class="pointer-events-none absolute bottom-0 right-0 w-[220px] h-[220px]">
+        <!-- Círculo gris gigantesco, recortado por el aside -->
+        <div class="absolute -bottom-16 -right-16 w-[240px] h-[240px] rounded-full bg-white/10"></div>
+        <!-- Círculo naranja encima (posición hacia arriba/izquierda del gris) -->
+        <div class="absolute top-6 left-6 w-[120px] h-[120px] rounded-full bg-brand shadow-[0_6px_16px_rgba(0,0,0,0.15)]"></div>
       </div>
     </aside>
 
-    <!-- Formulario con líneas (underline) -->
+    <!-- Formulario -->
     <form method="post" action="{{ url_for('contacto') }}" class="bg-transparent">
       {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
@@ -111,7 +113,7 @@
 
       <!-- Botón alineado a la derecha -->
       <div class="mt-8 flex justify-end">
-        <button class="inline-flex items-center rounded-xl bg-brand text-white text-sm px-5 py-2.5 shadow-soft hover:bg-brand-dark transition">
+        <button class="inline-flex items-center rounded-xl bg-brand text-white text-sm px-6 py-3 shadow-soft hover:bg-brand-dark transition">
           Enviar Mensaje
         </button>
       </div>
